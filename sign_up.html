@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Sign In/Sign Up</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        nav {
+            margin-bottom: 20px;
+        }
+        nav a {
+            margin-right: 15px;
+            text-decoration: none;
+            color: #333;
+        }
+        form {
+            max-width: 400px;
+            margin: auto;
+        }
+        fieldset {
+            border: 1px solid #ccc;
+            padding: 20px;
+        }
+        legend {
+            font-weight: bold;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        </style>
+</head>
+<body>
+    <nav><nav>
+      <a href="index.html">Home</a> |
+      <a href="about.html">About</a> |
+      <a href="semantik.html">Posts</a> |
+      <a href="sign_up.html">sign_up</a> |
+      <a href="sign_in.html">sign_in</a> |
+      <a href="post.html">Something?</a>
+    </nav></nav>
+    <form action="">
+        <fieldset>
+            <legend>Sign Up</legend>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <br>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <br>
+            <br>
+            <button type="submit">Submit</button>
+        </fieldset>
+        <p>Already xhave an account?<a href="sign_in.html"> Sign In</a></p>
+    </form>
+</body>
+</html>

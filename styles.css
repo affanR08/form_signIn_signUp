@@ -1,0 +1,345 @@
+/*
+ * File: styles.css
+ * Deskripsi:almighty CSS file. for article, form, portfolio, fieldset, radio, header, and more.
+ * Versi: 1.0
+ * Penulis: [affan]
+ * Tanggal: [01/08/2025]
+ */
+/* 1. Reset dan Typography */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+  
+}
+
+/* 2. Layout Flex dan Grid */
+.container {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  
+  
+  
+}
+
+.grid-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+/* 3. Tombol Serbaguna */
+.btn {
+  padding: 10px 20px;
+  border: none;
+  background-color: #0078d4;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #005a9e;
+}
+
+/* 4. Kartu Responsif */
+.card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  padding: 20px;
+  max-width: 300px;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+/* 5. Animasi Fade-In */
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* 6. Responsif Mobile */
+@media (max-width: 600px) {
+  .container {
+    flex-direction: column;
+    padding: 20px;
+  }
+}
+/* 7. Styling Form Input */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+textarea,
+select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: #0078d4;
+  outline: none;
+}
+
+/* 8. Validasi Sederhana */
+input:invalid {
+  border-color: red;
+}
+
+input:valid {
+  border-color: green;
+}
+
+/* 9. Tombol Kirim */
+form .btn {
+  align-self: flex-start;
+}
+
+/* 10. Pesan Kesalahan */
+.error-message {
+  color: red;
+  font-size: 14px;
+}
+
+/* 11. Responsif Tambahan */
+@media (max-width: 500px) {
+  form {
+    padding: 20px;
+  }
+}
+/* 12. Styling Fieldset */
+fieldset {
+  border: 2px solid #0078d4;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  background-color: #f9f9f9;
+  min-width: 470px;
+  min-height: fit-content;
+}
+
+/* 13. Styling Legend */
+legend {
+  font-weight: bold;
+  font-size: 18px;
+  padding: 0 10px;
+  color: #0078d4;
+}
+
+/* 14. Layout Isi Fieldset */
+fieldset label {
+  display: block;
+  margin-top: 10px;
+}
+
+fieldset input,
+fieldset textarea,
+fieldset select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+/* 15. Responsif Tambahan */
+@media (max-width: 600px) {
+  fieldset {
+    padding: 15px;
+  }
+
+  legend {
+    font-size: 16px;
+  }
+}
+/* 16. Group radio dengan flex */
+.radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  align-items: center;
+  margin-top: 10px;
+}
+
+/* 17. Label radio rapi dan interaktif */
+.radio-group label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background-color: #f2f2f2;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.radio-group input[type="radio"] {
+  accent-color: #0078d4;
+  transform: scale(1.2);
+}
+
+/* 18. Fokus dan terpilih */
+.radio-group input[type="radio"]:checked + label {
+  border-color: #0078d4;
+  background-color: #e0f0ff;
+}
+
+/* Alternatif jika input di dalam label */
+.radio-group input[type="radio"]:checked {
+  background-color: #0078d4;
+}
+/* 19. Styling Article */
+article {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  line-height: 1.8;
+  color: #333;
+}
+
+/* 20. Judul di dalam Article */
+article h1, article h2, article h3 {
+  margin-bottom: 15px;
+  color: #0078d4;
+}
+
+/* 21. Paragraf dan Gambar */
+article p {
+  margin-bottom: 20px;
+  font-size: 17px;
+}
+
+article img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+/* 22. Quote / Kutipan */
+article blockquote {
+  font-style: italic;
+  background-color: #f0f8ff;
+  padding: 15px 20px;
+  border-left: 5px solid #0078d4;
+  margin: 20px 0;
+  border-radius: 8px;
+}
+
+/* 23. Responsif */
+@media (max-width: 600px) {
+  article {
+    padding: 20px;
+    margin: 20px;
+  }
+
+  article h1 {
+    font-size: 24px;
+  }
+
+  article p {
+    font-size: 16px;
+  }
+}
+/* Portfolio Section */
+.portfolio {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  padding: 40px;
+  background-color: #f9f9f9;
+}
+
+/* Portfolio Card */
+.portfolio-item {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.08);
+  overflow: hidden;
+  transition: transform 0.3s;
+}
+
+.portfolio-item:hover {
+  transform: scale(1.03);
+}
+
+/* Gambar Project */
+.portfolio-item img {
+  width: 100%;
+  display: block;
+  border-bottom: 1px solid #eee;
+}
+
+/* Konten Card */
+.portfolio-content {
+  padding: 20px;
+}
+
+.portfolio-content h3 {
+  margin-bottom: 10px;
+  font-size: 20px;
+  color: #0078d4;
+}
+
+.portfolio-content p {
+  font-size: 16px;
+  color: #666;
+}
+/* Gambar di atas header */
+.header img {
+  width: 50%;
+  height: auto;
+  object-fit: cover;
+  border-bottom: 5px solid #0078d4;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+/* Efek hover */
+.header img:hover {
+  transform: scale(1.02);
+  box-shadow: 0 12px 20px rgba(0,0,0,0.2);
+}
+.header {
+  text-align: center;
+  padding: 40px;
+  background-color: #f0f8ff;
+}

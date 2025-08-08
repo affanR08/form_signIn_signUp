@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cube Game Enhanced</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #1a1a1a, #2e2e2e);
+      color: white;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 12vw;
+      height: 100%;
+      background: rgba(51, 51, 51, 0.9);
+      padding-top: 20vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 4px 0 10px rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(10px);
+      z-index: 2;
+    }
+
+    .sidebar a {
+      color: white;
+      text-decoration: none;
+      padding: 1vw;
+      display: block;
+      text-align: center;
+      transition: background-color 0.3s ease, transform 0.2s;
+    }
+
+    .sidebar a:hover {
+      background-color: #444;
+      transform: scale(1.1);
+    }
+
+    .dialogue-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 2vw;
+      background: linear-gradient(180deg, #222, #000);
+      box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.6), 0 0 10px rgba(0, 255, 255, 0.1);
+      border-radius: 2vw;
+      width: 60vw;
+      max-width: 90vw;
+      opacity: 0;
+      animation: fadeInUp 0.5s ease-in-out forwards;
+      z-index: 10;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translate(-50%, -30%); }
+      to { opacity: 1; transform: translate(-50%, -50%); }
+    }
+
+    .dialogue-box {
+      background: rgba(34, 34, 34, 0.85);
+      color: #ffffff;
+      padding: 2vw;
+      border-radius: 20px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
+      font-size: 2vw;
+      display: flex;
+      align-items: center;
+      backdrop-filter: blur(8px);
+    }
+
+    .character-portrait {
+      width: 10vw;
+      height: 10vw;
+      border-radius: 2vw;
+      margin-right: 20px;
+      box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+    }
+
+    .dialogue-text {
+      font-size: 2vw;
+      flex-grow: 1;
+      text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+    }
+
+    .cube-game {
+      width: 75vw;
+      margin-left: 13vw;
+      height: 250px;
+      background-color: #444;
+      position: absolute;
+      bottom: 0;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+
+    .cube {
+      width: 80px;
+      height: 80px;
+      position: absolute;
+      bottom: 0;
+      transition: left 0.2s ease, bottom 0.2s ease;
+      z-index: 2;
+    }
+
+    .platform {
+      width: 120px;
+      height: 10px;
+      background-color: #888;
+      position: absolute;
+      bottom: 60px;
+      left: 150px;
+    }
+
+    .social-media {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      gap: 20px;
+      z-index: 1;
+      animation: fly 2.5s ease-in-out infinite;
+    }
+
+    @keyframes fly {
+      0%, 100% { transform: translate(-50%, -50%) translateY(0px); }
+      50% { transform: translate(-50%, -50%) translateY(-20px); }
+    }
+
+    .social-media a {
+      color: white;
+      font-size: 40px;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .social-media a:hover { transform: scale(1.2); }
+    .social-media a.youtube:hover { color: #FF0000; }
+    .social-media a.discord:hover { color: #7289DA; }
+    .social-media a.email:hover { color: #0A66C2; }
+
+    @media (max-width: 768px) {
+      .dialogue-container { padding: 20px; margin-top: 80px; }
+      .dialogue-box { padding: 20px; font-size: 18px; }
+      .character-portrait { width: 80px; height: 80px; }
+      .cube-game { width: 90vw; margin-left: 0; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 style="text-align: center;">Affan Rabbani Portofolio</h1>
+    <nav class="sidebar">
+      <a href="https://affanqwertyuiop.blogspot.com">
+        <img src="gena heart.png" alt="Logo" class="sidebar-logo">
+        <div class="sidebar-logo-text">AFFAN BLOG</div>
+      </a>
+      <!-- <a href="#"><i class="fas fa-home"></i><span class="text">Home</span></a>
+      <a href="#"><i class="fas fa-briefcase"></i><span class="text">Project</span></a>
+      <a href="#"><i class="fas fa-spinner"></i><span class="text">In Progress</span></a> 
+      <a href="#"><i class="fas fa-info-circle"></i><span class="text">About</span></a> -->
+                  <a href="index.html">Home</a> 
+            <a href="about.html">About</a> 
+            <a href="semantik.html">Posts</a> 
+            <a href="sign_up.html">Sign Up</a> 
+            <a href="sign_in.html">Sign In</a> 
+            <a href="post.html">Something?</a>
+    </nav>
+  </header>
+  <main>
+    <section class="skill-card">
+      <div class="skill-icon">
+        <i class="fas fa-code"></i>
+      </div>
+      <section class="dialogue-container">
+        <div class="dialogue-box">
+          <img id="character-portrait" class="character-portrait" src="affan.jpg" alt="Character Portrait">
+          <div id="dialogue-text" class="dialogue-text"></div>
+        </div>
+      </section>
+      <section class="cube-game">
+        <aside class="social-media">
+          <a href="https://www.youtube.com/@FANREAL-08F" target="_blank" class="youtube">
+            <i class="fab fa-youtube"></i>
+          </a>
+          <a href="https://discordapp.com/users/1316963889082269747" target="_blank" class="discord">
+            <i class="fab fa-discord"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/feint-ii" class="email">
+            <i class="fab fa-linkedin"></i>
+          </a>
+        </aside>
+        <div class="platform"></div>
+        <img src="gena heart.png" id="cube" class="cube" alt="Cube Image">
+      </section>
+    </section>
+  </main>
+  <footer>
+    <p style="text-align:center;">&copy; 2025 Affan Rabbani</p>
+  </footer>
+  <script>
+    const dialogues = [
+ "Greetings.. My name is Affan Rabbani... Press Enter to continue",
+    "Welcome to my portfolio!",
+    "I live in North Cikarang, Bekasi, West Java, Indonesia.",
+    "I'm studying at Rabbaanii Boarding School.",
+    "I was born on May 19, 2008, in Bekasi.",
+    "I want to be a game developer, animator, and front-end developer.",
+    "You can visit my YouTube channel, my Discord (IDK why I placed it), and my LinkedIn below this box.",
+    "or you can visit my blog, just click the logo in the left-top side",
+    "and you can see my project or my progress.",
+    "my progress is for my still progressing study",
+    "my nickname is Feint_II...",
+    "i choose that word not because what it meaning but because it is a name of a skill on front mission series that allow you to dogde easier",
+    "why i say that ......because i don't have anything to speak again..",
+    "you can send me if you have a suggestion for my script, just send me email",
+    "my email is affanrabbani19@gmail.com",
+    ];
+
+    let currentDialogue = 0;
+    let typingSpeed = 30;
+    let isTyping = false;
+
+    function typeDialogue(text, index = 0) {
+      if (index === 0) document.getElementById("dialogue-text").textContent = "";
+      if (index < text.length) {
+        isTyping = true;
+        document.getElementById("dialogue-text").textContent += text[index];
+        setTimeout(() => typeDialogue(text, index + 1), typingSpeed);
+      } else isTyping = false;
+    }
+
+    function updateDialogue() {
+      if (isTyping) return;
+      if (currentDialogue < dialogues.length) {
+        typeDialogue(dialogues[currentDialogue]);
+        currentDialogue++;
+      } else {
+        document.getElementById("dialogue-text").textContent = "Press Enter to restart.";
+        currentDialogue = 0;
+      }
+    }
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === "Enter") updateDialogue();
+    });
+
+    updateDialogue();
+
+    const cube = document.getElementById('cube');
+    const enemy = document.getElementById('enemy');
+    const hitSound = document.getElementById('hit-sound');
+
+    let cubePosition = { x: 0, y: 0 };
+    let gravity = 2;
+    let isJumping = false;
+    let jumpHeight = 100;
+
+    function moveCube(direction) {
+      if (direction === 'ArrowUp' && !isJumping) {
+        isJumping = true;
+        jump();
+      } else if (direction === 'ArrowLeft' && cubePosition.x > 0) {
+        cubePosition.x -= 5;
+      } else if (direction === 'ArrowRight' && cubePosition.x < (document.querySelector('.cube-game').clientWidth - 40)) {
+        cubePosition.x += 5;
+      }
+      updateCubePosition();
+      checkCollision();
+    }
+
+    function jump() {
+      let height = 0;
+      const up = setInterval(() => {
+        if (height < jumpHeight) {
+          cubePosition.y += 5;
+          height += 5;
+          updateCubePosition();
+        } else {
+          clearInterval(up);
+          fall();
+        }
+      }, 20);
+    }
+
+    function fall() {
+      const down = setInterval(() => {
+        const platform = document.querySelector('.platform').getBoundingClientRect();
+        const cubeRect = cube.getBoundingClientRect();
+
+        if (
+          cubeRect.bottom >= platform.top &&
+          cubeRect.right > platform.left &&
+          cubeRect.left < platform.right &&
+          cubeRect.bottom <= platform.top + 10 &&
+          cubePosition.y > 60
+        ) {
+          clearInterval(down);
+          isJumping = false;
+        } else if (cubePosition.y > 0) {
+          cubePosition.y -= gravity;
+          updateCubePosition();
+        } else {
+          clearInterval(down);
+          cubePosition.y = 0;
+          isJumping = false;
+          updateCubePosition();
+        }
+      }, 20);
+    }
+
+    function updateCubePosition() {
+      cube.style.bottom = cubePosition.y + 'px';
+      cube.style.left = cubePosition.x + 'px';
+    }
+
+    function checkCollision() {
+      const icons = document.querySelectorAll('.social-media a');
+      const cubeRect = cube.getBoundingClientRect();
+
+      icons.forEach(icon => {
+        const iconRect = icon.getBoundingClientRect();
+        if (
+          cubeRect.left < iconRect.right &&
+          cubeRect.right > iconRect.left &&
+          cubeRect.top < iconRect.bottom &&
+          cubeRect.bottom > iconRect.top
+        ) {
+          hitSound.play();
+          window.open(icon.href, '_blank');
+        }
+      });
+
+    }
+
+    document.addEventListener('keydown', e => {
+      if (['ArrowUp', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+        moveCube(e.key);
+      }
+    });
+  </script>
+</body>
+</html>

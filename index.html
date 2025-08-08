@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    <title>Document</title>
+    <style>
+        html{
+            scroll-behavior: smooth;
+        }
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+.container {
+    background: white;
+    
+    border-radius: 10px;
+    width: 80%;
+    max-width: 1000px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    max-height: 90vh;
+    padding: 120px 40px 40px 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #b1e7f5;
+    padding-left: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* agar ke kiri */
+    gap: 32px;
+    
+}
+.navbar-logo img {
+    height: 20px;
+    width: 20px;
+    margin-right: 2px;
+    margin-left: 12px;
+    display: inline;
+    transform: scale(3);
+}
+
+.navbar-list {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+}
+
+.navbar-item a {
+    color: rgb(0, 99, 138);
+    font-weight: bold;
+    text-decoration: none;
+    background: 0.3s,
+        color 0.3s,
+        transform 0.3s;
+}
+.navbar-item a:hover {
+    
+    color: #001020;
+    transform: scale(1.2);
+}
+
+/* Dropdown */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    background-color: white;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    min-width: 160px;
+    z-index: 1000;
+   
+}
+.dropdown-content a {
+    padding: 10px 16px;
+    text-decoration: none;
+    color: #333;
+    display: block;
+}
+.dropdown{
+    position: relative;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 10px;
+    color: #333;
+}
+
+/* Konten teks */
+h1, h2, h3 {
+    margin-bottom: 16px;
+}
+
+p {
+    margin-bottom: 16px;
+    line-height: 1.6;
+    color: #333;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 24px auto;
+    border-radius: 6px;
+    transition: transform 0.3s;
+}
+
+/* Footer */
+footer {
+    padding: 12px;
+    background-color: #63adf7;
+    text-align: center;
+    font-size: 0.9em;
+    color: white;
+    margin-top: 40px;
+    transition: transform 0.3s;
+}
+a{
+    text-decoration: none;
+    
+}
+ul,li{
+    padding: 8px;
+    
+}
+footer:hover {
+    transform: scale(1.04);
+    transition: transform 0.3s;
+}
+img:hover {
+    transform: scale(1.06);
+    transition: transform 0.3s;
+    cursor: pointer;
+}
+.sidebar {
+    background: #e6f7fa;
+    border-radius: 12px;
+    padding: 32px 28px;
+    margin:0;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    max-width: 260px;
+    min-width: 180px;
+    flex-shrink: 0;
+    height: fit-content;
+    position: fixed;
+    top: 120px;
+    right: 40px;
+    width: 340px;
+    max-height: 80vh;
+    overflow-y: auto;
+    z-index: 1001;
+
+}
+@media (max-width: 1100px) {
+    .sidebar {
+        display: none;
+    }
+}
+.sidebar ul li a{
+    text-decoration: none;
+}
+.sidebar h3 {
+    margin-bottom: 12px;
+    color: #0077b6;
+    font-size: 150%;
+}
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+.sidebar li {
+    margin-bottom: 8px;
+}
+.sidebar a {
+    color: #0077b6;
+    transition: color 0.2s;
+    font-size: 140%;
+}
+.sidebar a:hover {
+    color: #002453;
+    transform: scale(1.5);
+}
+.main-layout {
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+    width: 100%;
+}
+.content {
+    flex: 1;
+    min-width: 0;
+}
+</style>
+<script>
+// filepath: h:\CODING WEB 11\project baru\index.html
+// ...existing code...
+document.querySelectorAll('.navbar-list a[href^="#"]').forEach(link => {
+  link.addEventListener('click', function(e) {
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      const navbarHeight = document.querySelector('.navbar').offsetHeight;
+      const top = target.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+      window.scroll({ top, behavior: 'smooth' });
+    }
+  });
+});
+</script>
+</head>
+
+<body>
+     <div class="container">
+
+    <!-- Tautan "Services" dengan menu dropdown -->
+
+    <!-- Container untuk navbar -->
+
+<nav class="navbar">
+
+    <div class="navbar-logo">
+    <img src="logo.png" alt="logo">
+    </div>
+<!-- Daftar tak-terurut untuk item navigasi -->
+<ul class="navbar-list">
+    
+    <li class="navbar-item dropdown">
+<a href="#">WEB</a>
+
+<!-- Kontainer untuk konten dropdown -->
+<div class="dropdown-content">
+<a href="#1.0">WEB 1.0</a>
+<a href="#2.0">WEB 2.0</a>
+<a href="#3.0">WEB 3.0</a>
+<a href="#4.0">WEB 4.0</a>
+<a href="#5.0">WEB 5.0</a>
+
+</div>
+</li>
+
+<!-- Tautan untuk halaman "Home" -->
+<li class="navbar-item"><a href="#F">fitur utama WEB 5.0</a></li>
+
+
+
+
+<!-- Tautan untuk halaman "About" -->
+<li class="navbar-item"><a href="#ke">Kesimpulan</a></li>
+
+<!-- Tautan untuk halaman "Contact" -->
+<li class="navbar-item"><a href="#FAQ">FAQ</a></li>
+      <li><a href="index.html">Home</a> |</li>
+      <li><a href="about.html">About</a> </li>|
+      <li><a href="semantik.html">Posts</a> </li>|
+      <li><a href="sign_up.html">sign_up</a> </li>|
+      <li><a href="sign_in.html">sign_in</a> </li>|
+      <li><a href="post.html">Something?</a></li>
+</ul>
+</nav>
+<div class="main-layout">
+
+   <main class="content">
+<h1>Perbedaan Web 1.0, 2.0, dan 3.0 hingga Evolusi Menuju Web 5.0</h1>
+<p>11/03/2025 <a href="https://indodax.com/academy/category/tutorial-id/">Tutorial</a></p>
+<img src="hingga-Evolusi-Menuju-Web-5.0-1024x576.png" alt="">
+<p>Internet telah mengalami perkembangan pesat sejak awal kemunculannya. Dari Web 1.0 hingga Web 3.0, setiap fase membawa perubahan signifikan dalam cara pengguna berinteraksi dengan web. Kini, muncul konsep Web 5.0 yang menjanjikan revolusi baru dengan integrasi teknologi canggih.</p>
+<h2>Perbedaan Web 1.0, 2.0, dan 3.0</h2>
+<h3 id="1.0">Web 1.0: Era Statis</h3>
+<p><a href="https://indodax.com/academy/pengertian-web-1-0/">Web 1.0 adalah generasi pertama internet </a> yang muncul pada 1990-an. Ciri khasnya adalah halaman web statis yang hanya menampilkan informasi tanpa interaksi pengguna. Konten hanya dapat dibaca tanpa bisa diubah atau dikomentari oleh pengguna. Beberapa karakteristik utama Web 1.0 meliputi:</p>
+<ul>
+    <li>Halaman web bersifat statis dan hanya dapat diakses tanpa interaksi</li>
+    <li>Minimnya media sosial dan komunitas online</li>
+    <li>Sumber daya utama berupa teks dan gambar sederhana</li>
+</ul>
+<h3 id="2.0">Web 2.0: Era Interaksi dan Media Sosial</h3>
+<p>Web 2.0 muncul pada awal 2000-an dengan peningkatan interaktivitas dan keterlibatan pengguna. Situs seperti Facebook, YouTube, dan Wikipedia memungkinkan pengguna untuk membuat dan berbagi konten. Beberapa ciri utama Web 2.0 meliputi:</p>
+<ul>
+    <li>Pengguna dapat berkontribusi dengan membuat konten, komentar, dan berbagi</li>
+    <li>Media sosial menjadi platform utama untuk interaksi</li>
+    <li>Penggunaan teknologi AJAX untuk pengalaman pengguna yang lebih dinamis</li> 
+</ul>
+<br>
+<p><strong>orang juga baca ini</strong><a href="https://indodax.com/academy/perbedaan-web-2-0-dan-3-0/"> Perbedaan Web 2.0 dan 3.0 & Keunggulannya</a></p>
+<br>
+<h3 id="3.0">Perbedaan Web 2.0 dan 3.0 & Keunggulannya</h3>
+<p>
+    Web 3.0 menandai peralihan ke internet yang lebih cerdas dan terdesentralisasi. Teknologi blockchain, kecerdasan buatan (AI), dan kontrak pintar memainkan peran utama dalam evolusi ini. Fitur utama Web 3.0 meliputi:
+</p>
+<ul>
+    <li>Desentralisasi melalui blockchain</li>
+    <li>Penggunaan AI untuk memahami data secara kontekstual</li>
+    <li>Privasi dan keamanan yang lebih baik bagi pengguna</li>
+</ul>
+<h2 id="4.0">web 4.0</h2>
+<p>pasti mempunyai sebuah rutinitas. Apapun bentuk rutinitasnya , seluruh rutinitas tersebut bisa diketahui oleh aplikasi komputer/program/tools/device yang kita miliki yang dijalankan secara online. Jadi kemanapun seseorang pergi, dan apapun yang dilakukan semuanya direcord oleh alat-alat tersebut yang nantinya akan digunakan jika ingin mengetahui informasi apa yang dibutuhkan, bahkan teknologi ini bisa mengingatkan, menginterupsi dan memberikan informasi manakala ada perubahan dari sebuah sechedule/rutinitas, yang membantu melakukan pencarian. Inti dari Web 4.0. Dapat mengetahui apa saja yang kita lakukan, dan juga bisa membantu dalam melakukan sebuah pencarian informasi dan menyimpan histori pencarian, bahkan mempertemukan orang-orang yang mencari informasi yang sama. Menurut Seth Godin dalam blognya, syarat utama.</p>
+<p>teknologi Web 4.0 :</p>
+<ul>
+    <li>
+        <strong>Komunikasi yang lebih baik:</strong> Web 4.0 memungkinkan komunikasi yang lebih baik antara manusia dan mesin, serta antar mesin itu sendiri.</li>
+    <li>
+        <strong>Interaksi yang lebih cerdas:</strong> Teknologi ini memungkinkan interaksi yang lebih cerdas antara pengguna dan aplikasi, dengan memahami konteks dan preferensi pengguna.</li>
+    <li>
+        <strong>Penggunaan data yang lebih efisien:</strong> Web 4.0 memanfaatkan data besar (big data) untuk memberikan pengalaman yang lebih personal dan relevan bagi pengguna.</li>
+</li>
+</ul>
+<h1 id="5.0">
+    Konsep Web 5.0 dan Revolusi Internet
+</h1>
+<p>
+    Web 5.0 merupakan konsep lanjutan yang menggabungkan keunggulan Web 3.0 dengan kecerdasan emosional AI dan Internet of Things (IoT). Tujuan utamanya adalah menciptakan internet yang lebih human-centric, di mana teknologi memahami dan merespons emosi manusia dengan lebih baik.
+</p>
+<p>Konsep Web 5.0 dipopulerkan oleh Jack Dorsey, pendiri Twitter, yang menekankan pentingnya internet yang lebih pribadi, aman, dan terdesentralisasi. Beberapa fitur utama Web 5.0 meliputi:</p>
+<ul>
+    <li><strong>Integrasi AI yang lebih cerdas:</strong> AI dalam Web 5.0 tidak hanya memahami data tetapi juga emosi pengguna.</li>
+    <li><strong>Konektivitas IoT yang lebih luas:</strong> Semua perangkat dapat terhubung untuk memberikan pengalaman yang lebih seamless.</li>
+    <li><strong>Keamanan data yang lebih tinggi: </strong>Web 5.0 bertujuan untuk memberikan kontrol penuh kepada pengguna atas data pribadi mereka.</li>
+</ul>
+<br>
+<p><strong>orang juga baca ini:</strong><a href="https://indodax.com/academy/internet-of-things-adalah/"> Apa Itu Internet of Things? Bongkar Cara Kerja & Manfaatnya</a></p>
+<h1 id="F">Fitur Utama Web 5.0
+</h1>
+<h2>1. Kecerdasan Buatan (AI) yang Lebih Lanjut</h2>
+<p>AI di Web 5.0 akan memahami tidak hanya teks dan gambar tetapi juga ekspresi emosi pengguna. Teknologi ini akan diterapkan dalam berbagai sektor seperti layanan pelanggan, pendidikan, dan hiburan.</p>
+<h2>2. Integrasi IoT (Internet of Things)</h2>
+<p>Perangkat yang terhubung dalam ekosistem IoT akan lebih cerdas dan responsif terhadap kebutuhan pengguna. Misalnya, rumah pintar yang bisa menyesuaikan suhu dan pencahayaan berdasarkan suasana hati penghuni.</p>
+<h2>3. Blockchain dan Desentralisasi</h2>
+<p>Keamanan dan transparansi data semakin diperkuat dengan teknologi blockchain, di mana pengguna memiliki kontrol penuh terhadap informasi mereka.</p>
+<h1>Manfaat Web 5.0 bagi Pengguna dan Industri</h1>
+<h3>1. Pengalaman Digital yang Lebih Personal</h3>
+<p>Dengan AI yang memahami emosi, pengguna akan mendapatkan pengalaman digital yang lebih personal dan responsif sesuai kebutuhan mereka.</p>
+<h3>2. Privasi dan Keamanan Data yang Lebih Baik</h3>
+<p>Web 5.0 memberikan pengguna kendali penuh atas data pribadi mereka, mengurangi risiko pelanggaran privasi yang sering terjadi di Web 2.0.</p>
+<h3>3. Efisiensi dalam Berbagai Sektor</h3>
+<p>Dunia bisnis, kesehatan, dan pendidikan akan mendapatkan manfaat dari Web 5.0. Misalnya, AI dapat membantu dalam diagnosis medis berdasarkan emosi pasien atau menyederhanakan proses bisnis melalui otomatisasi yang lebih canggih.</p>
+<br>
+<p><strong>orang juga baca ini:</strong><a href="https://indodax.com/academy/ai-crypto-2025-7-proyek-dominasi-pasar/"> AI Crypto 2025: 7 Proyek yang Bisa Mendominasi Pasar</a></p>
+<h1>Proyek Terkait Web 5.0</h1>
+<p>Beberapa perusahaan dan teknologi sedang mengarah pada pengembangan Web 5.0, antara lain:</p>
+<ul>
+    <li><strong>Bluesky:</strong> Proyek media sosial desentralisasi yang didukung oleh Jack Dorsey.</li>
+    <li><strong>SingularityNET:</strong> Platform AI berbasis blockchain untuk menciptakan sistem AI yang lebih cerdas dan terdesentralisasi.</li>
+    <li><strong>Neuralink:</strong> Perusahaan yang mengembangkan antarmuka otak-komputer, memungkinkan komunikasi langsung antara manusia dan teknologi.</li>
+</ul>
+<h1>Tantangan dan Isu yang Dihadapi</h1>
+<h2>1. Privasi dan Keamanan Data</h2>
+<p>Meskipun Web 5.0 berfokus pada privasi, tantangan terbesar tetap ada pada perlindungan data pribadi dan ancaman peretasan.</p>
+<h2>2. Adopsi Massal</h2>
+<p>Teknologi baru membutuhkan waktu untuk diterima oleh masyarakat luas. Banyak bisnis dan pengguna yang masih bergantung pada Web 2.0 dan belum siap untuk transisi ke Web 5.0.</p>
+<h2>3. Regulasi dan Kebijakan</h2>
+<p>Pemerintah di berbagai negara masih mencari cara untuk mengatur blockchain, AI, dan teknologi desentralisasi agar tetap aman dan tidak disalahgunakan.</p>
+<h1 id="ke">Kesimpulan</h1>
+<p>Web 5.0 adalah langkah besar berikutnya dalam evolusi internet, yang menggabungkan AI, IoT, dan blockchain untuk menciptakan pengalaman digital yang lebih personal dan aman. Meskipun memiliki potensi besar, tantangan seperti privasi, regulasi, dan adopsi masih perlu diatasi sebelum Web 5.0 dapat diterapkan secara luas.</p>
+<p>Nah, itulah pembahasan menarik tentang Web 5.0  yang bisa kamu baca selengkapnya hanya di <a href="https://indodax.com/academy/">Akademi Crypto.</a> Tidak hanya menambah wawasan tentang investasi, di sini kamu juga dapat menemukan <a href="https://indodax.com/academy/category/berita/">berita crypto</a> terkini seputar dunia blockchain dan kripto.</p>
+<p>Selain itu, temukan informasi terkini lainnya yang dikemas dalam kumpulan <a href="https://indodax.com/academy/artikel/">artikel crypto terlengkap</a> dari Indodax Academy. Jangan lewatkan kesempatan untuk memperluas pengetahuanmu di dunia investasi dan teknologi digital!</p>
+<h1 id="FAQ">FAQ</h1>
+<ul>
+    <li><strong>Apa perbedaan utama antara Web 1.0, 2.0, dan 3.0?</strong><br>Web 1.0 bersifat statis, Web 2.0 memungkinkan interaksi pengguna, dan Web 3.0 mengedepankan desentralisasi serta AI.</li>
+    <li><strong>Apa yang membuat Web 5.0 berbeda dari Web 3.0?</strong><br>Web 5.0 lebih fokus pada pengalaman berbasis emosi dengan AI yang lebih canggih dan integrasi IoT.</li>
+    <li><strong>Apakah Web 5.0 sudah tersedia?</strong><br>Saat ini, Web 5.0 masih dalam tahap konsep dan pengembangan dengan berbagai proyek yang mengarah ke sana.</li>
+    <li><strong>Bagaimana Web 5.0 akan memengaruhi keamanan data?</strong><br>Web 5.0 bertujuan untuk meningkatkan keamanan data dengan teknologi blockchain dan enkripsi yang lebih kuat.</li>
+    <li><strong>Apa tantangan terbesar dalam mengadopsi Web 5.0?</strong>Tantangan utama meliputi privasi, regulasi, serta kesiapan teknologi dan masyarakat untuk beralih ke ekosistem baru.</li>
+
+</ul>
+    <footer>
+        <p>&copy; 2025 Indodax Academy. All rights reserved.</p>
+        <p>Follow us on <a href="https://twitter.com/indodax">Twitter</a>, <a href="https://www.facebook.com/indodax">Facebook</a>, and <a href="https://www.instagram.com/indodax/">Instagram</a>.</p>
+        </div>
+        </main>
+    </footer>
+    </div>
+    <aside class="sidebar">
+    <h3>Link Terkait</h3>
+    <ul>
+        <li><a href="https://indodax.com/academy/">Akademi Crypto</a></li>
+        <li><a href="https://indodax.com/academy/category/berita/">Berita Crypto</a></li>
+        <li><a href="https://indodax.com/academy/artikel/">Artikel Crypto</a></li>
+        <li><a href="https://indodax.com/academy/category/tutorial-id/">Tutorial</a></li>
+    </ul>
+</aside>
+</body>
+</html>
